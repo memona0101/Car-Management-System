@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #030712;
+    /* Rich Black */
+    background-image:
+        radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 60%),
+        linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    color: #e2e8f0;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Typography Overrides */
+h1,
+h2,
+h3,
+.font-display {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+/* --- Holographic Loader --- */
+.loader-container {
+    perspective: 1000px;
+}
+
+.scanner-ring {
+    border: 3px solid transparent;
+    border-top: 3px solid #06b6d4;
+    /* Cyan */
+    border-radius: 50%;
+    animation: spin 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67) infinite;
+    box-shadow: 0 0 15px #06b6d4;
+}
+
+.scanner-core {
+    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+    animation: pulse-core 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse-core {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* --- Neon Effects --- */
+.neon-border {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5), inset 0 0 10px rgba(59, 130, 246, 0.1);
+}
+
+.neon-text-blue {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+}
+
+.neon-text-rose {
+    text-shadow: 0 0 10px rgba(225, 29, 72, 0.7);
+}
+
+/* --- 3D Parking Grid --- */
+.parking-grid-3d {
+    transform: perspective(1000px) rotateX(10deg) scale(0.95);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.parking-grid-3d:hover {
+    transform: perspective(1000px) rotateX(0deg) scale(1);
+}
+
+/* --- Sci-Fi Card Styles --- */
+.sci-fi-card {
+    background: rgba(10, 20, 40, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(6, 182, 212, 0.05);
+    background-image:
+        linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sci-fi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+    animation: scanner 3s linear infinite;
+}
+
+.tech-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: #06b6d4;
+    border-style: solid;
+    transition: all 0.3s ease;
+}
+
+.tl {
+    top: 0;
+    left: 0;
+    border-width: 2px 0 0 2px;
+}
+
+.tr {
+    top: 0;
+    right: 0;
+    border-width: 2px 2px 0 0;
+}
+
+.bl {
+    bottom: 0;
+    left: 0;
+    border-width: 0 0 2px 2px;
+}
+
+.br {
+    bottom: 0;
+    right: 0;
+    border-width: 0 2px 2px 0;
+}
+
+.sci-fi-card:hover .tech-corner {
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+}
+
+@keyframes scanner {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* --- Sector Map Background --- */
+.sector-map-bg {
+    background-color: #020408;
+    background-image:
+        linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(6, 78, 212, 0.15) 0%, transparent 80%);
+    background-size: 50px 50px, 50px 50px, 100% 100%;
+    animation: grid-scroll 20s linear infinite;
+    position: relative;
+}
+
+.sector-map-bg::after {
+    /* Horizon Fade */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 40%, #000000 100%);
+    pointer-events: none;
+}
+
+@keyframes grid-scroll {
+    0% {
+        background-position: 0 0, 0 0, 50% 50%;
+    }
+
+    100% {
+        background-position: 0 50px, 0 50px, 50% 50%;
+    }
+}
+
+
+/* --- Animations --- */
+.slide-in-up {
+    animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.scanline {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #06b6d4, transparent);
+    opacity: 0.5;
+    animation: scan 3s linear infinite;
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes scan {
+    0% {
+        top: 0%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
